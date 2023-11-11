@@ -9,7 +9,7 @@ type IPCUserCredentials = {
 
 type BaseGetOpts = RequestInit;
 
-export default class InboundGarminWrapper {
+export class InboundGarminWrapper {
 	// IPC Url that is supplied by the Garmin Inbound API.
 	readonly IPCUrl: string;
 
