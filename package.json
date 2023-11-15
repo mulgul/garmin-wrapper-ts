@@ -6,7 +6,8 @@
   "scripts": {
     "build": "rimraf ./lib && tsc",
     "lint": "eslint . --ext .ts",
-    "lint:fix": "yarn lint --fix"
+    "lint:fix": "yarn lint --fix",
+    "deploy": "yarn build && npm publish"
   },
   "keywords": [],
   "author": "",
