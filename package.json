@@ -1,5 +1,5 @@
 {
-  "name": "garmin-wrapper",
+  "name": "@mulgul/garmin-wrapper-ts",
   "version": "1.0.0",
   "description": "",
   "main": "lib/index.js",
@@ -10,7 +10,7 @@
   },
   "keywords": [],
   "author": "",
-  "license": "ISC",
+  "license": "Apache-2.0",
   "packageManager": "yarn@4.0.1",
   "devDependencies": {
     "@babel/core": "^7.20.2",
