@@ -1,13 +1,19 @@
 import { Buffer } from 'node:buffer';
 
 import { request } from './request';
-
-type IPCUserCredentials = {
-	username: string;
-	password: string;
-};
-
-type BaseGetOpts = RequestInit;
+import type {
+	BaseGetOpts,
+	DevicesKey,
+	History,
+	HistoryItems,
+	Interval,
+	IPCUserCredentials,
+	LastKnownLocation,
+	LocationRequest,
+	LocationsKey,
+	Tracking,
+	Version,
+} from './types';
 
 export class InboundGarminWrapper {
 	// IPC Url that is supplied by the Garmin Inbound API.
@@ -42,7 +48,10 @@ export class InboundGarminWrapper {
 	 */
 	public async getTrackingInterval(options: RequestInit = {}) {
 		const opts = Object.assign(this.baseGetOpts, options);
-		return await request(`https://${this.IPCUrl}/IPCInbound/V1/Tracking.svc/Interval?IMEI=${this.imei}`, opts);
+		return await request<DevicesKey<Interval>>(
+			`https://${this.IPCUrl}/IPCInbound/V1/Tracking.svc/Interval?IMEI=${this.imei}`,
+			opts
+		);
 	}
 
 	/**
@@ -52,7 +61,10 @@ export class InboundGarminWrapper {
 	 */
 	public async getTrackingTracking(options: RequestInit = {}) {
 		const opts = Object.assign(this.baseGetOpts, options);
-		return await request(`https://${this.IPCUrl}/IPCInbound/V1/Tracking.svc/Tracking?IMEI=${this.imei}`, opts);
+		return await request<DevicesKey<Tracking>>(
+			`https://${this.IPCUrl}/IPCInbound/V1/Tracking.svc/Tracking?IMEI=${this.imei}`,
+			opts
+		);
 	}
 
 	/**
@@ -62,7 +74,7 @@ export class InboundGarminWrapper {
 	 */
 	public async getTrackingVersion(options: RequestInit = {}) {
 		const opts = Object.assign(this.baseGetOpts, options);
-		return await request(`https://${this.IPCUrl}/IPCInbound/V1/Version.svc/Version`, opts);
+		return await request<Version>(`https://${this.IPCUrl}/IPCInbound/V1/Version.svc/Version`, opts);
 	}
 
 	/**
@@ -74,7 +86,7 @@ export class InboundGarminWrapper {
 	 */
 	public async getLocationHistory(start: string, end: string, options: RequestInit = {}) {
 		const opts = Object.assign(this.baseGetOpts, options);
-		return await request(
+		return await request<HistoryItems<History>>(
 			`https://${this.IPCUrl}/IPCInbound/V1/Location.svc/History?start=${start}&end=${end}&IMEI=${this.imei}`,
 			opts
 		);
@@ -87,7 +99,10 @@ export class InboundGarminWrapper {
 	 */
 	public async getLocationLastKnownLocation(options: RequestInit = {}) {
 		const opts = Object.assign(this.baseGetOpts, options);
-		return await request(`https://${this.IPCUrl}/IPCInbound/V1/Location.svc/LastKnownLocation?IMEI=${this.imei}`, opts);
+		return await request<LocationsKey<LastKnownLocation>>(
+			`https://${this.IPCUrl}/IPCInbound/V1/Location.svc/LastKnownLocation?IMEI=${this.imei}`,
+			opts
+		);
 	}
 
 	/**
@@ -97,7 +112,10 @@ export class InboundGarminWrapper {
 	 */
 	public async getLocationLocationRequest(options: RequestInit = {}) {
 		const opts = Object.assign(this.baseGetOpts, options);
-		return await request(`https://${this.IPCUrl}/IPCInbound/V1/Location.svc/LocationRequest?IMEI=${this.imei}`, opts);
+		return await request<LocationsKey<LocationRequest>>(
+			`https://${this.IPCUrl}/IPCInbound/V1/Location.svc/LocationRequest?IMEI=${this.imei}`,
+			opts
+		);
 	}
 
 	/**
@@ -107,6 +125,6 @@ export class InboundGarminWrapper {
 	 */
 	public async getLocationVersion(options: RequestInit = {}) {
 		const opts = Object.assign(this.baseGetOpts, options);
-		return await request(`https://${this.IPCUrl}/IPCInbound/V1/Location.svc/Version`, opts);
+		return await request<Version>(`https://${this.IPCUrl}/IPCInbound/V1/Location.svc/Version`, opts);
 	}
 }
