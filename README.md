@@ -10,7 +10,7 @@
     <a href="https://github.com/mulgul/Garmin-Wrapper-TS/actions">
       <img alt="Github Actions" src="https://github.com/mulgul/Garmin-Wrapper-TS/workflows/pr/badge.svg" />
     </a>
-    <a href="https://github.com/mulgul/Garmin-Wrapper-TS/blob/master/LICENSE">
+    <a href="https://github.com/mulgul/Garmin-Wrapper-TS/blob/main/LICENSE">
       <img alt="GPL-3.0-or-later" src="https://img.shields.io/npm/l/@mulgul/garmin-wrapper-ts" />
     </a>
   </p>
