@@ -149,4 +149,14 @@ export class InboundGarminWrapper {
 		const opts = Object.assign(this.baseGetOpts, options);
 		return await request<DevicesKey<EmergencyState>>(`https://${this.IPCUrl}/IPCInbound/V1/Emergency.svc/State`, opts);
 	}
+
+	/**
+	 * @see https://explore.garmin.com/IPCInbound/docs/#!/Emergency.svc/VersionGET
+	 *
+	 * @params options
+	 */
+	public async getEmergencyVersion(options: RequestInit = {}) {
+		const opts = Object.assign(this.baseGetOpts, options);
+		return await request<Version>(`https://${this.IPCUrl}/IPCInbound/V1/Emergency.svc/State`, opts);
+	}
 }
