@@ -3,6 +3,7 @@ import { Buffer } from 'node:buffer';
 import { request } from './request';
 import type {
 	BaseGetOpts,
+	DeviceConfig,
 	DevicesKey,
 	EmergencyState,
 	History,
@@ -181,5 +182,16 @@ export class InboundGarminWrapper {
 	public async getPingbackVersion(options: RequestInit = {}) {
 		const opts = Object.assign(this.baseGetOpts, options);
 		return await request<Version>(`https://${this.IPCUrl}/IPCInbound/V1/Pingback.svc/Version`, opts);
+	}
+
+	/**
+	 * @see https://explore.garmin.com/IPCInbound/docs/#!/Configuration.svc/GetAvailableConfigurationsGET
+	 *
+	 * @params options
+	 */
+
+	public async getConfigurationDeviceConfig(options: RequestInit = {}) {
+		const opts = Object.assign(this.baseGetOpts, options);
+		return await request<DeviceConfig>(`https://${this.IPCUrl}/IPCInbound/V1/Configuration.svc/DeviceConfig`, opts);
 	}
 }

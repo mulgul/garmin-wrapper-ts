@@ -78,3 +78,24 @@ export type EmergencyState = {
 	IMEI: number;
 	State: string;
 };
+
+export type DeviceConfig = {
+	AcceptedValues: string;
+	AcceptedValuesDesc: string;
+	BundleTrackEnabled: boolean;
+	Category: string;
+	ConfigEditable: boolean;
+	ConfigRemovable: boolean;
+	ConsumerEnabled: boolean;
+	DefaultConfig: string;
+	DefaultSetting: string;
+	Description: string | null;
+	DeviceKey: number;
+	DeviceTypes: number;
+	DisplayName: string;
+	EnterpriseEnabled: boolean;
+	ExploreExposed: boolean;
+	Id: number;
+	Name: string;
+	UnitString: string | null;
+};
