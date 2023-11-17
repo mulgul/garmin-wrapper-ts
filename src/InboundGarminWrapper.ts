@@ -194,4 +194,14 @@ export class InboundGarminWrapper {
 		const opts = Object.assign(this.baseGetOpts, options);
 		return await request<DeviceConfig>(`https://${this.IPCUrl}/IPCInbound/V1/Configuration.svc/DeviceConfig`, opts);
 	}
+
+	/**
+	 * @see https://explore.garmin.com/IPCInbound/docs/#!/Configuration.svc/VersionGET
+	 *
+	 * @params options
+	 */
+	public async getConfigurationVersion(options: RequestInit = {}) {
+		const opts = Object.assign(this.baseGetOpts, options);
+		return await request<Version>(`https://${this.IPCUrl}/IPCInbound/V1/Configuration.svc/Version`, opts);
+	}
 }
