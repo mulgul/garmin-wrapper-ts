@@ -72,4 +72,9 @@ export type LocationRequest = {
 
 export type Respondent = {
 	Respondent: string;
-}
+};
+
+export type EmergencyState = {
+	IMEI: number;
+	State: string;
+};
