@@ -4,6 +4,7 @@ import { request } from './request';
 import type {
 	BaseGetOpts,
 	DevicesKey,
+	EmergencyState,
 	History,
 	HistoryItems,
 	Interval,
@@ -11,6 +12,7 @@ import type {
 	LastKnownLocation,
 	LocationRequest,
 	LocationsKey,
+	Respondent,
 	Tracking,
 	Version,
 } from './types';
@@ -126,5 +128,38 @@ export class InboundGarminWrapper {
 	public async getLocationVersion(options: RequestInit = {}) {
 		const opts = Object.assign(this.baseGetOpts, options);
 		return await request<Version>(`https://${this.IPCUrl}/IPCInbound/V1/Location.svc/Version`, opts);
+	}
+
+	/**
+	 * @see https://explore.garmin.com/IPCInbound/docs/#!/Emergency.svc/GetEmergencyRespondentGET
+	 *
+	 * @param options
+	 */
+	public async getEmergencyRespondent(options: RequestInit = {}) {
+		const opts = Object.assign(this.baseGetOpts, options);
+		return await request<Respondent>(`https://${this.IPCUrl}/IPCInbound/V1/Emergency.svc/Respondent`, opts);
+	}
+
+	/**
+	 * @see https://explore.garmin.com/IPCInbound/docs/#!/Emergency.svc/StateGET
+	 *
+	 * @params options
+	 */
+	public async getEmergencyState(options: RequestInit = {}) {
+		const opts = Object.assign(this.baseGetOpts, options);
+		return await request<DevicesKey<EmergencyState>>(
+			`https://${this.IPCUrl}/IPCInbound/V1/Emergency.svc/State?IMEI=${this.imei}`,
+			opts
+		);
+	}
+
+	/**
+	 * @see https://explore.garmin.com/IPCInbound/docs/#!/Emergency.svc/VersionGET
+	 *
+	 * @params options
+	 */
+	public async getEmergencyVersion(options: RequestInit = {}) {
+		const opts = Object.assign(this.baseGetOpts, options);
+		return await request<Version>(`https://${this.IPCUrl}/IPCInbound/V1/Emergency.svc/Version`, opts);
 	}
 }

@@ -69,3 +69,12 @@ export type LocationRequest = {
 	StartDate: string;
 	ExpirationDate: string;
 };
+
+export type Respondent = {
+	Respondent: string;
+};
+
+export type EmergencyState = {
+	IMEI: number;
+	State: string;
+};
