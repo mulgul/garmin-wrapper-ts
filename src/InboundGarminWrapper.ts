@@ -172,4 +172,14 @@ export class InboundGarminWrapper {
 		const opts = Object.assign(this.baseGetOpts, options);
 		return await request<Version>(`https://${this.IPCUrl}/IPCInbound/V1/Messaging.svc/Version`, opts);
 	}
+
+	/**
+	 * @see https://explore.garmin.com/IPCInbound/docs/#!/Pingback.svc/VersionGET
+	 * 
+	 * @params options
+	 */
+	public async getPingbackVersion(options: RequestInit = {}) {
+		const opts = Object.assign(this.baseGetOpts, options);
+		return await request<Version>(`https://${this.IPCUrl}/IPCInbound/V1/Pingback.svc/Version`, opts);
+	}
 }
