@@ -175,7 +175,7 @@ export class InboundGarminWrapper {
 
 	/**
 	 * @see https://explore.garmin.com/IPCInbound/docs/#!/Pingback.svc/VersionGET
-	 * 
+	 *
 	 * @params options
 	 */
 	public async getPingbackVersion(options: RequestInit = {}) {
