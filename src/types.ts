@@ -69,3 +69,7 @@ export type LocationRequest = {
 	StartDate: string;
 	ExpirationDate: string;
 };
+
+export type Respondent = {
+	Respondent: string;
+}

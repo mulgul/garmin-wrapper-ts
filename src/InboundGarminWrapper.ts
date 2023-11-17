@@ -13,6 +13,7 @@ import type {
 	LocationsKey,
 	Tracking,
 	Version,
+	Respondent,
 } from './types';
 
 export class InboundGarminWrapper {
@@ -126,5 +127,15 @@ export class InboundGarminWrapper {
 	public async getLocationVersion(options: RequestInit = {}) {
 		const opts = Object.assign(this.baseGetOpts, options);
 		return await request<Version>(`https://${this.IPCUrl}/IPCInbound/V1/Location.svc/Version`, opts);
+	}
+
+	/**
+	 * @see https://explore.garmin.com/IPCInbound/docs/#!/Emergency.svc/GetEmergencyRespondentGET
+	 * 
+	 * @param options
+	 */
+	public async getEmergencyRespondent(options: RequestInit ={}) {
+		const opts = Object.assign(this.baseGetOpts, options);
+		return await request<Respondent>(`https://${this.IPCUrl}/IPCInbound/V1/Emergency.svc/Respondent`, opts);
 	}
 }
