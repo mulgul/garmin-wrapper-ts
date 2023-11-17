@@ -147,7 +147,7 @@ export class InboundGarminWrapper {
 	 */
 	public async getEmergencyState(options: RequestInit = {}) {
 		const opts = Object.assign(this.baseGetOpts, options);
-		return await request<DevicesKey<EmergencyState>>(`https://${this.IPCUrl}/IPCInbound/V1/Emergency.svc/State`, opts);
+		return await request<DevicesKey<EmergencyState>>(`https://${this.IPCUrl}/IPCInbound/V1/Emergency.svc/State?IMEI=${this.imei}`, opts);
 	}
 
 	/**
